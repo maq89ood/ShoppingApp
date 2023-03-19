@@ -34,7 +34,9 @@ const SignIn = () => {
                     <Text style={styles.frgttext}>Forgot Password?</Text>
                 </TouchableOpacity>
                 <View style={{ marginTop: hp(3) }}>
-                    <CustomRoundbtn />
+                    <CustomRoundbtn 
+                    onPress={()=>{navigation.navigate('BottomTab')}}
+                    />
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center',alignSelf:'center',marginTop:hp(5) }}>
                     <View>

@@ -1,5 +1,5 @@
 import React from "react";
-import { View ,Text,TouchableOpacity,Image,ImageBackground,StyleSheet,StatusBar} from "react-native";
+import { View ,Text,TouchableOpacity,Image,ImageBackground,StyleSheet,StatusBar, TextInput} from "react-native";
 import colorpath from "../../asstes/ColorPath";
 import CustoHeader from "../../component/CustoHeader";
 import {
@@ -8,7 +8,11 @@ import {
     responsiveFontSize as fs
 } from "react-native-responsive-dimensions";
 import CustomRoundbtn from "../../component/CustomRoundbtn";
+import { useNavigation } from "@react-navigation/native";
+
 const Otp = () => {
+    const navigation = useNavigation()
+
     return (
         <View style={styles.container}>
             
@@ -18,11 +22,19 @@ const Otp = () => {
 
 <Text style={{paddingHorizontal:wp(16.8),fontSize:fs(2),marginTop:hp(1)}}>Enter the OTP code sent to you</Text>
 
-<Text style={{textAlign:'center',color:'red',fontWeight:'600',marginTop:hp(18)}}>Resend in 00:30</Text>
+<TextInput
+style={styles.otpbox}
+keyboardType={"phone-pad"}
 
+/>
+
+
+<Text style={{textAlign:'center',color:'red',fontWeight:'600',marginTop:hp(6)}}>Resend in 00:30</Text>
 
 <View style={{paddingHorizontal:wp(8)}}>
-<CustomRoundbtn/>
+<CustomRoundbtn
+onPress={()=>navigation.navigate('ResetSuccess')}
+/>
 
 </View>
 
@@ -41,7 +53,12 @@ const styles = StyleSheet.create({
         flex: 1, backgroundColor: colorpath.bgcolor,
     },
  
-
+    otpbox:{
+        borderBottomWidth:1,
+        marginTop:hp(5),
+        width:wp(55),
+        alignSelf:'center'
+    }
 
 
 

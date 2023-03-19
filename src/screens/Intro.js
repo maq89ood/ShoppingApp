@@ -37,7 +37,7 @@ const Intro = () => {
                     bgcolor='#000'
                     title='Register'
                     onPress={() => { navigation.navigate('SignUpp') }}
-
+                    margintop={hp(2)}
                 />
             </View>
 

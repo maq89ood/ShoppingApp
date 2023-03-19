@@ -8,19 +8,21 @@ import {
 import ImagePath from '../asstes/ImagePath';
 import colorpath from '../asstes/ColorPath';
 import { useNavigation } from '@react-navigation/native';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-export default function CustoHeader(props) {
+export default function CustomHeader2(props) {
     const navigation = useNavigation()
 
 
     return (
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: wp(6), marginTop: hp(3) }}>
+        <View style={{ flexDirection: 'row', paddingHorizontal: wp(6), marginTop: hp(3),alignItems:'center',justifyContent:'space-between'}}>
 
             <TouchableOpacity onPress={() => { navigation.goBack() }}>
                 <Image style={{ width: wp(6), height: hp(2.7), resizeMode: 'contain', tintColor: colorpath.btncolor }} source={ImagePath.Headerarrow} />
             </TouchableOpacity>
-            <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center' }}>
-                <Text style={{ fontSize: fs(1.5) }}>{props.title}</Text>
+
+            <TouchableOpacity style={{}}>
+                <Text style={{ fontSize: fs(2.5),paddingRight:wp(35),color:colorpath.btncolor,fontWeight:'600'}}>{props.title}</Text>
             </TouchableOpacity>
 
           

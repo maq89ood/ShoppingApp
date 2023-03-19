@@ -10,8 +10,11 @@ import {
 import CustomInput from "../../component/CustomInput";
 import ImagePath from "../../asstes/ImagePath";
 import CustomRoundbtn from "../../component/CustomRoundbtn";
+import { useNavigation } from "@react-navigation/native";
 
 const SignUpp = () => {
+    const navigation = useNavigation()
+
     return (
         <View style={styles.container}>
             
@@ -32,7 +35,9 @@ const SignUpp = () => {
                 </TouchableOpacity>
 
               <View style={{marginTop:hp(3)}}>
-                <CustomRoundbtn/>
+                <CustomRoundbtn
+                onPress={()=>navigation.navigate('Otp')}
+                />
               </View>
 
 <View style={styles.bottmtextview}>
@@ -47,7 +52,7 @@ const SignUpp = () => {
 
 
 
-<CustoHeader/>
+
 
         </View>
     );

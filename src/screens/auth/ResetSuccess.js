@@ -9,8 +9,11 @@ import {
     responsiveFontSize as fs
 } from "react-native-responsive-dimensions";
 import { Custombtn } from "../../component/Custombtn";
+import { useNavigation } from "@react-navigation/native";
 
 const ResetSuccess = () => {
+    const navigation = useNavigation()
+
     return (
         <View style={styles.container}>
             
@@ -20,7 +23,7 @@ const ResetSuccess = () => {
 
 <View style={styles.imgstyl}>
     <Image
-    source={ImagePath.righticon}
+    source={ImagePath.resetlogo}
     />
 </View>
 
@@ -28,6 +31,7 @@ const ResetSuccess = () => {
 
 <TouchableOpacity style={{alignItems:'center',marginTop:hp(3.9)}}>
 <Custombtn
+onPress={()=>navigation.navigate('SignIn')}
 textcolor={'#fff'}
 title={'Sign in now'}
 bgcolor={'black'}

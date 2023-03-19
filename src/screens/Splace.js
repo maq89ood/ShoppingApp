@@ -21,6 +21,7 @@ const Splace = () => {
                     <Image style={styles.img2styl} source={ImagePath.oo} />
                 </View>
             </View>
+            
             <TouchableOpacity onPress={() => { navigation.navigate('Intro') }} style={styles.opc}>
                 <Text style={styles.btntext}>Start Shopping</Text>
             </TouchableOpacity>
