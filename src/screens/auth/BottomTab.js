@@ -26,10 +26,11 @@ import Cart from './Cart';
         initialRouteName="Home"
       screenOptions={{
         headerShown:false,
-        tabBarActiveTintColor:"#000000",
+        tabBarActiveTintColor:"000000",
+        tabBarInactiveTintColor:"ADADAD",
         tabBarStyle: { position: 'absolute' },
-        tabBarLabelStyle:{fontSize:33,}
-      }}
+        tabBarLabelStyle:{fontSize:33,}}}
+        
         >
 
 
@@ -39,8 +40,8 @@ import Cart from './Cart';
         options={{
             
           tabBarLabel: '',
-          tabBarIcon: ({ color, size }) => (
-          <Image style={{marginTop:hp(6)}} source={ImagePath.homeicon}/>
+          tabBarIcon: ({ focused }) => (
+          <Image style={{marginTop:hp(6),tintColor:focused ? '#000000':'#ADADAD'}} source={ImagePath.homeicon}/>
             
           ),
         }}
@@ -53,8 +54,8 @@ import Cart from './Cart';
         options={{
             
           tabBarLabel: '',
-          tabBarIcon: ({ color, size }) => (
-          <Image style={{marginTop:hp(6)}} source={ImagePath.searchicon}/>
+          tabBarIcon: ({ focused }) => (
+          <Image style={{marginTop:hp(6),tintColor:focused ? '#000000':'#ADADAD'}} source={ImagePath.searchicon}/>
             
           ),
         }}
@@ -67,8 +68,8 @@ import Cart from './Cart';
         options={{
             
           tabBarLabel: '',
-          tabBarIcon: ({ color, size }) => (
-          <Image style={{marginTop:hp(6)}} source={ImagePath.shoppingcart}/>
+          tabBarIcon: ({ focused }) => (
+          <Image style={{marginTop:hp(6),tintColor:focused ? '#000000':'#ADADAD'}} source={ImagePath.shoppingcart}/>
             
           ),
         }}
@@ -81,8 +82,8 @@ import Cart from './Cart';
         options={{
             
           tabBarLabel: '',
-          tabBarIcon: ({ color, size }) => (
-          <Image style={{marginTop:hp(6)}} source={ImagePath.hearticon}/>
+          tabBarIcon: ({ focused }) => (
+          <Image style={{marginTop:hp(6),tintColor:focused ? '#000000':'#ADADAD'}} source={ImagePath.hearticon}/>
             
           ),
         }}
@@ -95,8 +96,8 @@ import Cart from './Cart';
         options={{
             
           tabBarLabel: '',
-          tabBarIcon: ({ color, size }) => (
-          <Image style={{marginTop:hp(6)}} source={ImagePath.profileicon}/>
+          tabBarIcon: ({ focused }) => (
+          <Image style={{marginTop:hp(6),tintColor:focused ? '#000000':'#ADADAD'}} source={ImagePath.profileicon}/>
             
           ),
         }}

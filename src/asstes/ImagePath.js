@@ -68,6 +68,9 @@ const ImagePath = {
     hearticon: require('../asstes/Images/hearticon.png'),
     profileicon: require('../asstes/Images/profileicon.png'),
 
+    bigbillionday: require('../asstes/Images/big-billion-day.jpeg'),
+
+
 
 
 

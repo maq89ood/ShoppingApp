@@ -1,5 +1,5 @@
 import React from "react";
-import { View ,Text,TouchableOpacity,Image,ImageBackground,StyleSheet,StatusBar} from "react-native";
+import { View ,Text,TouchableOpacity,Image,ImageBackground,StyleSheet,StatusBar, KeyboardAvoidingView} from "react-native";
 import colorpath from "../../asstes/ColorPath";
 import CustoHeader from '../../component/CustoHeader';
 import {
@@ -17,16 +17,17 @@ const SignUpp = () => {
 
     return (
         <View style={styles.container}>
+      
             
 <CustoHeader
 />
 
 <View style={styles.mainview}>
-                <Text style={styles.signtext}>Sign in</Text>
+                <Text style={styles.signtext}>Sign Up</Text>
                 <Text style={{ color: colorpath.btncolor, marginTop: hp(2) }}>Create your new account</Text>
                 <View style={{ marginTop: hp(4) }}>
                     <CustomInput placeholder='Username' img={ImagePath.Message} />
-                    <CustomInput placeholder='mobile' img={ImagePath.mobile} />
+                    <CustomInput  placeholder='mobile' img={ImagePath.mobile} />
                     <CustomInput placeholder='Email address' img={ImagePath.Message} />
                     <CustomInput secureTextEntry={true} placeholder='Password' img={ImagePath.simplelock} />
                      

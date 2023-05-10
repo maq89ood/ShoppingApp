@@ -1,210 +1,105 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Image, ImageBackground, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import colorpath from "../../asstes/ColorPath";
 import ImagePath from "../../asstes/ImagePath";
-import CustomHeader3 from "../../component/CustomHeader3";
+
 import {
     responsiveHeight as hp,
     responsiveWidth as wp,
     responsiveFontSize as fs,
 } from "react-native-responsive-dimensions";
 import { useNavigation } from "@react-navigation/native";
+import { FlatList } from "react-native-gesture-handler";
+import CustomHeader3 from "../../component/CustomHeader3";
+import ModalScreen from "./ModalScreen";
 
-const Home = ({navigations}) => {
+const Home = () => {
+    const navigation = useNavigation();
+    const [product, setproduct] = useState([]);
 
-    const [heart,setheart]=useState(false)
-    const navigation = useNavigation()
+    useEffect(() => {
+        GetProdut();
+    }, [])
+
+
+    const GetProdut = () => {
+        fetch('https://fakestoreapi.com/products')
+            .then(res => res.json())
+            .then(json => setproduct(json))
+    }
+
+    const openDrawer = () => {
+        navigation.toggleDrawer();
+    };
 
     return (
 
+        <View style={styles.container}>
+            <ScrollView>
+
+                <CustomHeader3
+                    onPress={() => openDrawer()}
+                    menubtn={ImagePath.menubtn}
+                    likebtn={ImagePath.hearticon}
+                />
 
 
 
-        <ScrollView style={styles.container}>
-            <CustomHeader3
-                menubtn={ImagePath.menubtn}
-            />
 
-            <ImageBackground style={styles.bgimgstyle} source={ImagePath.homepic}>
-                <View style={{ marginHorizontal: wp(4.5), marginTop: hp(6.8) }}>
-                    <Text style={{ color: colorpath.bgcolor, fontSize: fs(1.4) }}>SPORT COLLECTION</Text>
-                    <Text style={{ color: colorpath.bgcolor, marginBottom: (1) }}>_______</Text>
-                    <Text style={{ color: colorpath.bgcolor, fontSize: fs(4), fontWeight: '600' }}>20% OFF</Text>
-                    <Text style={{ color: colorpath.bgcolor, fontWeight: '600' }}>For Selected Sport Style </Text>
-                </View>
+                <ImageBackground style={styles.bgimgstyle} source={ImagePath.homepic}>
+                    <View style={{ marginHorizontal: wp(4.5), marginTop: hp(6.8) }}>
+                        <Text style={{ color: colorpath.bgcolor, fontSize: fs(1.4) }}>SPORT COLLECTION</Text>
+                        <Text style={{ color: colorpath.bgcolor, marginBottom: (1) }}>_______</Text>
+                        <Text style={{ color: colorpath.bgcolor, fontSize: fs(4), fontWeight: '600' }}>20% OFF</Text>
+                        <Text style={{ color: colorpath.bgcolor, fontWeight: '600' }}>For Selected Sport Style </Text>
+                    </View>
 
-                <TouchableOpacity style={styles.buybtn}>
-                    <Text style={{ color: colorpath.btncolor, fontWeight: '500', fontSize: fs(1.6) }}>Shop Now</Text>
-                </TouchableOpacity>
-                <Image style={{bottom:hp(3)}} source={ImagePath.groupp}/>
+                    <TouchableOpacity style={styles.buybtn}>
+                        <Text style={{ color: colorpath.btncolor, fontWeight: '500', fontSize: fs(1.6) }}>Shop Now</Text>
+                    </TouchableOpacity>
+                    <Image style={{ bottom: hp(3) }} source={ImagePath.groupp} />
+                </ImageBackground>
 
-            </ImageBackground>
+                <ModalScreen
+                />
+
+                <View style={{ paddingHorizontal: wp(4) }}>
+
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', }}>
+                        <Text style={{ color: colorpath.btncolor, fontSize: fs(2.8), fontWeight: '600' }}>Best of OD</Text>
+                        <Text>Show all</Text>
+                    </View>
+
+                    <View style={{ marginTop: hp(1) }}>
+
+                        <FlatList data={product} showsVerticalScrollIndicator={false}
+                            renderItem={({ item, index }) => {
+
+                                return (
+                                    <View style={styles.productitem}>
+                                        <Image source={{ uri: item.image }} style={{ width: wp(30), height: hp(30), resizeMode: 'contain' }} />
+
+                                        <View style={{ marginTop: hp(3), marginHorizontal: wp(4) }}>
+                                            <Text style={styles.productname}>{item.title.length > 25 ? item.title.substring(0, 25) + '.....' : item.title}</Text>
+                                            <Text style={styles.dscption}>{item.description.length > 30 ? item.description.substring(0, 30) + '....' : item.description}</Text>
+                                            <Text style={styles.price}>{'$' + item.price}</Text>
 
 
-            <View style={{ paddingHorizontal: wp(4) }}>
+                                        </View>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: hp(1) }}>
-                    <Text style={{ color: colorpath.btncolor, fontSize: fs(2.8), fontWeight: '600' }}>Best of OD</Text>
-                    <Text>Show all</Text>
-                </View>
+                                    </View>
 
-
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-
-                    <View style={{ marginTop: hp(2) }}>
-                        <ImageBackground style={{ width: wp(45), height: hp(22), padding: wp(2), }} source={ImagePath.nikeshoe__2} >
-                            <TouchableOpacity onPress={()=>navigation.navigate('Detail')} style={styles.newbtntxt}>
-                                <Text style={{ color: colorpath.btncolor, fontWeight: '500', fontSize: fs(1.3) }}>New</Text>
-                                </TouchableOpacity>
-
-                            <Text style={{ marginTop: hp(3) }}>Men’s Shoe</Text>
-                            <Text style={styles.producttxtstyle}>Nike Air VaporMax Evo</Text>
-                            <Text style={styles.producttxtstyle}>$300.00</Text>
-                        </ImageBackground>
+                                )
+                            }}
+                        />
                     </View>
 
 
-                    <View style={{ marginTop: hp(2), marginHorizontal: wp(5) }}>
-                        <ImageBackground style={{ width: wp(45), height: hp(22), padding: wp(2), }} source={ImagePath.nikeshoe__1} >
-                            <TouchableOpacity style={styles.newbtntxt}><Text style={{ color: colorpath.btncolor, fontWeight: '500', fontSize: fs(1.3) }}>New</Text>
-                            </TouchableOpacity>
-
-                            <Text style={{ marginTop: hp(3) }}>Men’s Shoe</Text>
-                            <Text style={styles.producttxtstyle}>Nike Air VaporMax Evo</Text>
-                            <Text style={styles.producttxtstyle}>$300.00</Text>
-                        </ImageBackground>
-                    </View>
-
-
-                    <View style={{ marginTop: hp(2), marginHorizontal: wp(5) }}>
-                        <ImageBackground style={{ width: wp(45), height: hp(22), padding: wp(2), }} source={ImagePath.nikeshoe__2} >
-
-                            <Text style={{ marginTop: hp(3) }}>Men’s Shoe</Text>
-                            <Text style={styles.producttxtstyle}>Nike Air VaporMax Evo</Text>
-                            <Text style={styles.producttxtstyle}>$300.00</Text>
-
-                        </ImageBackground>
-                    </View>
-                </View>
-
-
-                <Text style={{fontSize:fs(3),marginTop:hp(12),fontWeight:'600',color:colorpath.btncolor}}>New Arrivals</Text>
-
-
-                <ImageBackground style={styles.ImageBackgroundstyle} source={ImagePath.blackman}>
-                <Text style={{color:colorpath.bgcolor,fontSize:fs(4),fontWeight:'600'}}>Men</Text>
-            </ImageBackground>
-
-
-            <View style={styles.mainview}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Text style={{ color: colorpath.btncolor, fontSize: fs(2.5), fontWeight: '500' }}>45 Items</Text>
-                    <Image source={ImagePath.Filter} />
-                </View>
-
-
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: hp(2.5), }}>
-
-                    <View style={{ width: wp(25), height: hp(3.9), backgroundColor: colorpath.btncolor, borderRadius: fs(3), alignItems: 'center', justifyContent: 'center', }}>
-                        <Text style={{ color: colorpath.bgcolor, }}>All Shoes</Text>
-                    </View>
-
-                    <View style={styles.slidderstyle}>
-                        <Text >Tops & T-Shirt</Text>
-                    </View>
-
-                    <View style={styles.slidderstyle}>
-                        <Text>Caps</Text>
-                    </View>
-
-                    <View style={styles.slidderstyle}>
-                        <Text >Accessories</Text>
-                    </View>
-
-                    <View style={styles.slidderstyle}>
-                        <Text >caps</Text>
-                    </View>
 
                 </View>
-                </View>
+            </ScrollView>
+        </View>
 
-
-
-
-             <View style={{flexDirection:'row',justifyContent:'space-between',paddingHorizontal:wp(3),}}>
-             <View style={{marginTop:hp(4),}}>
-                        <ImageBackground style={{ width: wp(41), height: hp(25) ,paddingHorizontal:wp(3.8),}}resizeMode='stretch' source={ImagePath.jordanshoe1}>
-                            <TouchableOpacity onPress={()=>(setheart(!heart))}>
-                        <Image style={styles.heartstyle} source={heart? ImagePath.heartred:ImagePath.heartblank}/>
-                        </TouchableOpacity>
-                        </ImageBackground>
-                    
-               
-
-                <Text style={{ marginTop: hp(1.5) }}>Men’s Shoe</Text>
-                <Text style={{ color: colorpath.btncolor, fontWeight: '600', marginTop: hp(0.7),fontSize:fs(1.5) }}>Jordan Why Not? Zer0.4 PF</Text>
-                <Text style={styles.producttxt}>$300.00</Text>
-                </View>
-
-                <View style={{marginTop:hp(4),}}>
-                        <ImageBackground style={{ width: wp(41), height: hp(25) ,paddingHorizontal:wp(3.8),}}resizeMode='stretch' source={ImagePath.jordanshoe2}>
-                            <TouchableOpacity onPress={()=>(setheart(!heart))}>
-                        <Image style={styles.heartstyle} source={heart? ImagePath.heartred:ImagePath.heartblank}/>
-                        </TouchableOpacity>
-                        </ImageBackground>
-                    
-               
-
-                <Text style={{ marginTop: hp(1.5) }}>Men’s Shoe</Text>
-                <Text style={{ color: colorpath.btncolor, fontWeight: '600', marginTop: hp(0.7),fontSize:fs(1.5) }}>KD14</Text>
-                <Text style={styles.producttxt}>$300.00</Text>
-                </View>               
-               
-             </View>
-
-
-             <View style={{flexDirection:'row',justifyContent:'space-between',paddingHorizontal:wp(3),}}>
-             <View style={{marginTop:hp(4),}}>
-                        <ImageBackground style={{ width: wp(41), height: hp(25) ,paddingHorizontal:wp(3.8),}}resizeMode='stretch' source={ImagePath.jordanshoe3}>
-                            <TouchableOpacity onPress={()=>(setheart(!heart))}>
-                        <Image style={styles.heartstyle} source={heart? ImagePath.heartred:ImagePath.heartblank}/>
-                        </TouchableOpacity>
-                        </ImageBackground>
-                    
-               
-
-                <Text style={{ marginTop: hp(1.5) }}>Men’s Shoe</Text>
-                <Text style={{ color: colorpath.btncolor, fontWeight: '600', marginTop: hp(0.7),fontSize:fs(1.5) }}>Jordan Why Not? Zer0.4 PF</Text>
-                <Text style={styles.producttxt}>$300.00</Text>
-                </View>
-
-                <View style={{marginTop:hp(4),}}>
-                        <ImageBackground style={{ width: wp(41), height: hp(25) ,paddingHorizontal:wp(3.8),}}resizeMode='stretch' source={ImagePath.jordanshoe4}>
-                            <TouchableOpacity onPress={()=>(setheart(!heart))}>
-                        <Image style={styles.heartstyle} source={heart? ImagePath.heartred:ImagePath.heartblank}/>
-                        </TouchableOpacity>
-                        </ImageBackground>
-                    
-               
-
-                <Text style={{ marginTop: hp(1.5) }}>Men’s Shoe</Text>
-                <Text style={{ color: colorpath.btncolor, fontWeight: '600', marginTop: hp(0.7),fontSize:fs(1.5) }}>KD14</Text>
-                <Text style={styles.producttxt}>$300.00</Text>
-                </View>               
-               
-             </View>
-
-
-
-
-            </View>
-
-
-
-
-
-        </ScrollView>
-        
     );
 };
 
@@ -237,7 +132,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     producttxtstyle: {
-        color: colorpath.btncolor, 
+        color: colorpath.btncolor,
         fontWeight: '600',
         color: colorpath.btncolor,
         fontWeight: '500',
@@ -246,8 +141,8 @@ const styles = StyleSheet.create({
         width: wp(100), height: hp(24),
         alignSelf: 'center',
         marginTop: hp(2.5),
-        alignItems:'center',
-        justifyContent:'center'
+        alignItems: 'center',
+        justifyContent: 'center'
 
     },
     mainview: {
@@ -264,25 +159,44 @@ const styles = StyleSheet.create({
         marginHorizontal: wp(2),
 
     },
-    heartstyle:{
-        width:wp(4),height:hp(2),
-        marginTop:hp(2.3),
-        alignSelf:'flex-end',
-      
+    heartstyle: {
+        width: wp(4), height: hp(2),
+        marginTop: hp(2.3),
+        alignSelf: 'flex-end',
+
     },
-    producttxt:{
+    producttxt: {
         color: colorpath.btncolor,
-         fontWeight: '400' ,
-         marginTop:hp(.6)
+        fontWeight: '400',
+        marginTop: hp(.6)
     },
-    
 
 
 
+    productitem: {
+        flexDirection: 'row',
+        width: wp(100),
+        height: hp(25),
+        marginTop: hp(4),
+        backgroundColor: 'rgba(168, 132, 151, 0.08)'
+
+    },
 
 
+    productname: {
+        fontSize: fs(2),
+        color: colorpath.btncolor,
+        fontWeight: '600'
+    },
+    dscption: {
+        marginTop: hp(.4)
+    },
 
-
+    price: {
+        fontSize: fs(2.5),
+        color: 'green',
+        fontWeight: '700'
+    }
 
 
 })

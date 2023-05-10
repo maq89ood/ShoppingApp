@@ -1,20 +1,18 @@
 import React from "react";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { View, Image, Text, TouchableOpacity, StyleSheet, ImageBackground, ScrollView, StatusBar } from "react-native";
 import colorpath from "../../asstes/ColorPath";
 import ImagePath from "../../asstes/ImagePath";
-import CustoHeader from "../../component/CustoHeader";
-import {
-    responsiveHeight as hp,
-    responsiveWidth as wp,
-    responsiveFontSize as fs
-} from "react-native-responsive-dimensions";
-import { Custombtn } from "../../component/Custombtn";
+import {responsiveHeight as hp,responsiveWidth as wp,responsiveFontSize as fs} 
+from "react-native-responsive-dimensions";
 
 const MyAcoount = () => {
 
     return (
-        <ScrollView style={styles.container}>
-            <StatusBar barStyle={'dark-content'} />
+  
+        <View style={styles.container}>
+            <ScrollView>
+     
 
             <Text style={styles.headingtxt}>My Account</Text>
 
@@ -25,7 +23,7 @@ const MyAcoount = () => {
                 </View>
             </View>
 
-            <Text style={styles.usertxt}>Van Smith</Text>
+            <Text style={styles.usertxt}>{'Masood Aly'}</Text>
 
 
 
@@ -45,47 +43,39 @@ const MyAcoount = () => {
             </View>
 
 
-            <View style={styles.bottomstyles}>
-            <Text style={{color:colorpath.btncolor,fontWeight:'600',fontSize:fs(1.9),left:wp(3)}}>My Order</Text>
+            {/* <TouchableOpacity style={styles.bottomstyles}>
+            <Text style={{color:colorpath.btncolor,fontWeight:'600',fontSize:fs(2),left:wp(3)}}>My Order</Text>
             <Image source={ImagePath.righvectr}/>
-            </View>
+            </TouchableOpacity>
 
-            <View style={styles.simpleline}></View>
-
-            <View style={styles.bottomstyles2}>
-            <Text style={{color:colorpath.btncolor,fontWeight:'600',fontSize:fs(1.9),left:wp(3)}}>Vouchers</Text>
+            <TouchableOpacity style={styles.bottomstyles}>
+            <Text style={{color:colorpath.btncolor,fontWeight:'600',fontSize:fs(2),left:wp(3)}}>Voucher</Text>
             <Image source={ImagePath.righvectr}/>
-            </View>
-            <View style={styles.simpleline}></View>
+            </TouchableOpacity>
 
-            <View style={styles.bottomstyles2}>
-            <Text style={{color:colorpath.btncolor,fontWeight:'600',fontSize:fs(1.9),left:wp(3)}}>Shipping Adress</Text>
+            <TouchableOpacity style={styles.bottomstyles}>
+            <Text style={{color:colorpath.btncolor,fontWeight:'600',fontSize:fs(2),left:wp(3)}}>Shipping Addressed</Text>
             <Image source={ImagePath.righvectr}/>
-            </View>
-            <View style={styles.simpleline}></View>
+            </TouchableOpacity>
 
-            <View style={styles.bottomstyles2}>
-            <Text style={{color:colorpath.btncolor,fontWeight:'600',fontSize:fs(1.9),left:wp(3)}}>FAQ</Text>
+            <TouchableOpacity style={styles.bottomstyles}>
+            <Text style={{color:colorpath.btncolor,fontWeight:'600',fontSize:fs(2),left:wp(3)}}>FAQ</Text>
             <Image source={ImagePath.righvectr}/>
-            </View>
-            <View style={styles.simpleline}></View>
+            </TouchableOpacity>
 
-            <View style={styles.bottomstyles2}>
-            <Text style={{color:colorpath.btncolor,fontWeight:'600',fontSize:fs(1.9),left:wp(3)}}>Customer Service</Text>
+            <TouchableOpacity style={styles.bottomstyles}>
+            <Text style={{color:colorpath.btncolor,fontWeight:'600',fontSize:fs(2),left:wp(3)}}>Custmer Services</Text>
             <Image source={ImagePath.righvectr}/>
-            </View>
-            <View style={styles.simpleline}></View>
-
-            <View style={styles.bottomstyles2}>
-            <Text style={{color:colorpath.btncolor,fontWeight:'600',fontSize:fs(1.9),left:wp(3)}}>Setting </Text>
+            </TouchableOpacity>
+          
+            <TouchableOpacity style={styles.bottomstyles}>
+            <Text style={{color:colorpath.btncolor,fontWeight:'600',fontSize:fs(2),left:wp(3)}}>Setting</Text>
             <Image source={ImagePath.righvectr}/>
-            </View>
-            <View style={styles.simpleline}></View>
+            </TouchableOpacity> */}
 
 
-
-
-        </ScrollView>
+            </ScrollView>
+        </View>
     );
 };
 
@@ -133,26 +123,13 @@ const styles = StyleSheet.create({
     bottomstyles:{
         width: wp(90), height: hp(6),
          backgroundColor: 'white',
-         marginTop:hp(5),alignSelf:'center',
+         marginTop:hp(3),alignSelf:'center',
          padding:wp(3),flexDirection:'row',
-         justifyContent:'space-between'
+         justifyContent:'space-between',
+         borderBottomColor:"lightgray",borderBottomWidth:1
     },
-    bottomstyles2:{
-        width: wp(90), height: hp(6),
-         backgroundColor: 'white',
-         marginTop:hp(2),alignSelf:'center',
-         padding:wp(3),flexDirection:'row',
-         justifyContent:'space-between'
-    },
+ 
 
-
-
-    simpleline:{
-        width:wp(90),height:hp(0.3),
-        backgroundColor:'#F4F5F7',
-        alignSelf:'center',
-        marginTop:hp(1)
-    }
 
 
 

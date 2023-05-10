@@ -22,6 +22,7 @@ const SignIn = () => {
             <CustoHeader
                 title='Skip Here'
             />
+         
 
             <View style={styles.mainview}>
                 <Text style={styles.signtext}>Sign in</Text>
@@ -35,7 +36,10 @@ const SignIn = () => {
                 </TouchableOpacity>
                 <View style={{ marginTop: hp(3) }}>
                     <CustomRoundbtn 
-                    onPress={()=>{navigation.navigate('BottomTab')}}
+                onPress={()=>{
+                    navigation.navigate('BottomTab')
+                }}
+
                     />
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center',alignSelf:'center',marginTop:hp(5) }}>
